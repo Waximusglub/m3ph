@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@import "@fontsource-variable/syne";
+@import "@fontsource/space-mono/400.css";
+@import "@fontsource/space-mono/700.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #eeeeea;
+  --surface: #e6e6e1;
+  --surface-2: #ffffff;
+  --border: #cccccc;
+  --text-primary: #1a1a1a;
+  --text-secondary: #555555;
+  --muted: #888888;
+}
+
+.dark {
+  --background: #111111;
+  --surface: #1a1a1a;
+  --surface-2: #222222;
+  --border: #333333;
+  --text-primary: #eeeeee;
+  --text-secondary: #a0a0a0;
+  --muted: #777777;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-muted: var(--muted);
+
+  --font-display: "Syne Variable", sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background text-text-primary font-mono antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+}

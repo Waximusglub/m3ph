@@ -1,13 +1,26 @@
+---
+import '../styles/global.css';
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+
+		<link rel="icon" href="/favicon-light.ico" media="(prefers-color-scheme: light)" />
+		<link rel="icon" href="/favicon-dark.ico" media="(prefers-color-scheme: dark)" />
+
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
+		<title>m3ph</title>
+
+		<script is:inline>
+			const saved = localStorage.getItem("theme");
+			const theme = saved ?? "dark";
+			document.documentElement.classList.toggle("dark", theme === "dark");
+			document.getElementById("favicon").href = `/favicon-${theme}.svg`;
+		</script>
+</head>
 	<body>
 		<slot />
 	</body>
